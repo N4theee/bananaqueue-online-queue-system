@@ -1,0 +1,18 @@
+# dependencies
+node_modules/
+bananaqueue-backend/node_modules/
+bananaqueue-frontend/node_modules/
+
+# env
+.env
+bananaqueue-backend/.env
+bananaqueue-frontend/.env
+
+# build
+dist/
+build/
+
+# misc
+*.zip
+*.log
+.vscode/
