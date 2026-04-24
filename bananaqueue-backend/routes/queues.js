@@ -11,6 +11,7 @@ router.get('/:id',        protect, getQueue);
 router.post('/',          protect, authorize('admin'), createQueue);
 router.put('/:id',        protect, authorize('admin'), updateQueue);
 router.delete('/:id',     protect, authorize('admin'), deleteQueue);
-router.post('/:id/reset', protect, authorize('admin'), resetQueue);
+// Staff can also call reset (controller enforces empty-queue rule)
+router.post('/:id/reset', protect, authorize('admin', 'staff'), resetQueue);
 
 module.exports = router;
