@@ -1,0 +1,164 @@
+openapi: 3.0.0
+info:
+  title: BananaQueue API
+  version: 1.0.0
+  description: API documentation for BananaQueue system
+
+servers:
+  - url: http://localhost:5000
+
+tags:
+  - name: Admin
+    description: Admin endpoints
+
+paths:
+
+  /api/admin/staff:
+    post:
+      summary: Create a staff user
+      tags: [Admin]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, password, departmentId]
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                departmentId:
+                  type: string
+      responses:
+        201:
+          description: Staff created
+
+    get:
+      summary: Get all staff
+      tags: [Admin]
+      responses:
+        200:
+          description: Success
+
+  /api/admin/staff/{id}:
+    put:
+      summary: Update staff
+      tags: [Admin]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                departmentId:
+                  type: string
+      responses:
+        200:
+          description: Updated
+
+    delete:
+      summary: Delete staff
+      tags: [Admin]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Deleted
+
+  /api/admin/call-next/{queueId}:
+    post:
+      summary: Call next customer
+      tags: [Admin]
+      parameters:
+        - in: path
+          name: queueId
+          required: true
+          schema:
+            type: string
+
+  /api/admin/complete/{entryId}:
+    post:
+      summary: Complete entry
+      tags: [Admin]
+      parameters:
+        - in: path
+          name: entryId
+          required: true
+          schema:
+            type: string
+
+  /api/admin/entry/{entryId}:
+    delete:
+      summary: Remove entry
+      tags: [Admin]
+      parameters:
+        - in: path
+          name: entryId
+          required: true
+          schema:
+            type: string
+
+  /api/admin/transactions:
+    get:
+      summary: Get all transactions
+      tags: [Admin]
+
+  /api/admin/departments:
+    get:
+      summary: Get departments
+      tags: [Admin]
+
+    post:
+      summary: Create department
+      tags: [Admin]
+
+  /api/admin/overview:
+    get:
+      summary: Get dashboard overview
+      tags: [Admin]
+
+  /api/admin/customers:
+    get:
+      summary: Get all customers
+      tags: [Admin]
+
+  /api/admin/notifications:
+    get:
+      summary: Get notifications
+      tags: [Admin]
+
+  /api/admin/notifications/request:
+    post:
+      summary: Request queue action
+      tags: [Admin]
+
+  /api/admin/notifications/{id}/approve:
+    post:
+      summary: Approve notification
+      tags: [Admin]
+
+  /api/admin/notifications/{id}/reject:
+    post:
+      summary: Reject notification
+      tags: [Admin]
+
+  /api/admin/notifications/unread-count:
+    get:
+      summary: Get unread notification count
+      tags: [Admin]
